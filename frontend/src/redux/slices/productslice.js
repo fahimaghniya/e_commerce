@@ -2,14 +2,14 @@ import { createSlice } from "@reduxjs/toolkit"
 import { login_action } from "../actions/useraction"
 import { getallproductaction } from "../actions/productaction"
 
-const initialstate={
+const initialState={
     productlist:[],
     isfetching:false,
     error:false
 }
 const productslice=createSlice({
     name:"product",
-    initialstate,
+    initialState,
     reducers:{},
     extraReducers:(builder)=>
 {
@@ -23,7 +23,7 @@ state.error=null
 {
 state.isFetching=false
 state.error=null
-state.productlist=payload     //payload=retour de l'api
+state.productlist=payload.data     //payload=retour de l'api
 })
 .addCase(getallproductaction.rejected,(state,{payload})=>
 {

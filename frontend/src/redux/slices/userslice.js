@@ -1,14 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit"
 import { login_action } from "../actions/useraction"
 
-const initialstate={
+const initialState={
     userconnected:null,
     isfetching:false,
     error:null
 }
 const userslice=createSlice({
     name:"users",
-    initialstate,
+    initialState,
     reducers:{},
     extraReducers:(builder)=>
 {
