@@ -1,0 +1,10 @@
+const express=require("express")
+const { createcategorie, getallcategorie, getbyid, deletecategorie, updatecategorie } = require("../controllers/categoriecontroller")
+const authentificated = require("../middleware/authentificated")
+const router=express.Router()
+router.post("/createcategorie",authentificated,createcategorie)
+router.get("/getallcategorie",getallcategorie)
+router.get("/getbyid/:id",getbyid)
+router.delete("/deletecategorie/:id",authentificated,deletecategorie)
+router.put("/updatecategorie/:id",authentificated,updatecategorie)
+module.exports=router

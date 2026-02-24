@@ -1,0 +1,13 @@
+const express=require("express")
+const { inscriptionuser, login, logout, forgetpassword, resetpassword, getuserprofilebyid, getallusers, deleteuser } = require("../controllers/usercontroller")
+const sendemail = require("../utils/sendemail")
+const router= express.Router()
+router.post("/inscriptionuser",inscriptionuser)
+router.post("/login",login)
+router.post("/logout",logout)
+router.post("/forgetpassword",forgetpassword)
+router.post("/resetpassword/:token",resetpassword)
+router.get("/getuserprofilebyid/:id",getuserprofilebyid)
+router.get("/getallusers",getallusers)
+router.delete("/deleteuser/:id",deleteuser)
+module.exports=router

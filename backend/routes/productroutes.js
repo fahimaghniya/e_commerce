@@ -1,0 +1,13 @@
+const express=require("express")
+const {createproduct,getallproduct, deleteproduct, getproductbyid, updateproduct, getproductbysubcategoryid} = require("../controllers/productcontroller")
+const authentificated = require("../middleware/authentificated")
+const authorize = require("../middleware/authorized")
+const upload = require("../middleware/upload")
+const router=express.Router()
+router.post("/addproduct",authentificated,authorize("admin"),upload.single("image"),createproduct)
+router.get("/getallproduct",getallproduct)
+router.delete("/deleteproduct/:id",authentificated,deleteproduct)
+router.get("/getproductdetail/:id",getproductbyid)
+router.put("/updateproduct/:id",authentificated,updateproduct)
+router.get("/getproductbysubcategoryid/:subcategoryid",getproductbysubcategoryid)
+module.exports=router
