@@ -1,10 +1,14 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { toast } from 'react-toastify'
+import { logout_action } from '../redux/actions/useraction'
 
 const Navbar = () => {
   const [categories,setcategories]=useState([])
+  const userconnected=useSelector(state=>state.users.userconnected)
+  console.log("l'utilisateur connecté est",userconnected)
   useEffect(()=>{
     const listcategorie=async()=>{
       try {
@@ -17,6 +21,15 @@ const Navbar = () => {
     }
    listcategorie()
   },[])
+  const dispatch=useDispatch()
+  const handlelogout=async()=>{
+try {
+  dispatch (logout_action())   //dispatch permet de déclencher l'action 
+  toast.success("logout succefully")
+} catch (error) {
+  console.log("failed to logout",error)
+}
+  }
   return (
   <div> <div className="container-fluid mb-5">
     <div className="row border-top px-xl-5">
@@ -65,8 +78,10 @@ const Navbar = () => {
               </div>
             </div>
             <div className="navbar-nav ml-auto py-0">
-              <Link to="/Login" className="nav-item nav-link">Login</Link>
-              <Link to="Register" className="nav-item nav-link">Register</Link>
+              {userconnected ?(<div> <span>welcome</span><span> {userconnected.userexist.fullname
+}</span> <button onClick={handlelogout}>Logout</button></div>):(<> <Link to="/Login" className="nav-item nav-link">Login</Link>
+              <Link to="Register" className="nav-item nav-link">Register</Link></>)}
+             
             </div>
           </div>
         </nav>

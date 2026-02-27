@@ -36,5 +36,7 @@ app.use("/cart",cartrouter)
 const orderrouter=require("./routes/orderroute")
 app.use("/order",orderrouter)
 app.use("/uploads",express.static("uploads"))  //pour rendre l'image public, on a ajouté cette ligne pour rendre l'image affiché dans le navigateur de frontend
+const facturerouter=require("./routes/factureroute")
+app.use("/facture",facturerouter)
 app.listen(3001)
 console.log("serveur is runnig on localhost:3001")

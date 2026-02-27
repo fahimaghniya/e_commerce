@@ -4,14 +4,17 @@ import Footer from '../components/Footer'
 import { useParams } from 'react-router-dom'
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import { getproductbyidaction } from '../redux/actions/productaction';
+import { useDispatch, useSelector } from 'react-redux';
 const Details = () => {
   const{id}=useParams() //pour recuperer l'id depuis l'url//
-  const [productDetail,setProductDetail]=useState(null)
+  const productDetail=useSelector(state=>state.product.productdetail)  //pour recuperer le detail du produit depuis le store//
+  const dispatch=useDispatch()   //pour déclencher l'action getproductbyidaction//
+  //use effect pour afficher le detail du produit lors de l'ouverture de la page//
   useEffect(()=>{
     const getdetails=async()=>{
       try {
-        const response= await axios.get(`http://localhost:3001/product/getproductdetail/${id}`)
-        setProductDetail(response.data.data)
+        dispatch(getproductbyidaction(id))  //dispatch pour déclencher l'action getproductbyidaction
       } catch (error) {
         toast.error("failed to get product")
       }

@@ -8,7 +8,7 @@ import { getallproductaction } from '../redux/actions/productaction'
 const Product = () => {
   const navigate=useNavigate()
 const   dispatch=useDispatch()
-const productList=useSelector(state=>state.product.productList)
+const productList=useSelector(state=>state.product.productlist)
   useEffect(()=>{
     //rechercher les product from data base                 //use effect affiche le contenu  lors de l'ouverture de page//
     const getallproduct=async()=>{

@@ -3,6 +3,8 @@ import Topbar from '../components/Topbar'
 import Footer from '../components/Footer'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
+import { register_action } from '../redux/actions/useraction'
+import { toast } from 'react-toastify'
 
 const Register = () => {
   //usestate pour stocker email et password et fullname//
@@ -15,11 +17,13 @@ const navigate=useNavigate()
 setFormData({...formData,[e.target.name]:e.target.value})
   }
   //handle register fonction globale pour l'inscription//
-
+const dispatch=useDispatch()
   const handleRegister=async(event)=>{
 event.preventDefault()
 try {
-  const response= await axios.post("http://localhost:3001/user/inscriptionuser",formData)
+dispatch(register_action(formData))   //dispatch pour déclencher l'action register_action
+toast.success("register succefully")
+
   navigate("/Login")
 //on va envoyer form data au backend ici//
 
